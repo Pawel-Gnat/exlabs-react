@@ -1,5 +1,7 @@
+import { Character } from '../../types/types';
+
 interface GalleryListItemProps {
-  character: any;
+  character: Character;
 }
 
 export const GalleryListItem = ({ character }: GalleryListItemProps) => {

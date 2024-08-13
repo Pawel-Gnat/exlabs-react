@@ -1,11 +1,12 @@
-import axios from 'axios';
+import { DB_URL } from '../api';
+
 import { useEffect, useRef, useState } from 'react';
 
-import { DB_URL } from '../database';
+import { Character } from '../types/types';
 
 export const useCharacters = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
   const controllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -24,14 +25,14 @@ export const useCharacters = () => {
           setCharacters(data.results);
         }
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          if (error.response && error.response.data) {
-            console.error(`Response error: ${error.response.data.error}`);
+        if (error instanceof Error) {
+          if (error.name === 'AbortError') {
+            console.warn('Fetch aborted');
           } else {
-            console.error('Response error: unknown error');
+            console.error('Fetch error:', error.message);
           }
         } else {
-          console.error(error);
+          console.error('Unexpected error', error);
         }
       } finally {
         setIsLoading(false);
@@ -39,6 +40,12 @@ export const useCharacters = () => {
     };
 
     fetchCharacters();
+
+    return () => {
+      if (controllerRef.current) {
+        controllerRef.current.abort();
+      }
+    };
   }, []);
 
   return {
