@@ -1,3 +1,13 @@
-export const Skeleton = () => {
-  return <div className="h-80 w-80 animate-pulse rounded-md bg-blue-500"></div>;
+import { cn } from '../../utils/classNames';
+
+interface SkeletonProps {
+  className?: string;
+}
+
+export const Skeleton = ({ className }: SkeletonProps) => {
+  return (
+    <div
+      className={cn('w-full animate-pulse rounded-xl bg-gray-300 shadow-2xl', className)}
+    ></div>
+  );
 };
