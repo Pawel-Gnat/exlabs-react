@@ -1,22 +1,13 @@
-import { useCharacters } from '../hooks/useCharacters';
+import { GalleryList } from '../components/homepage/GalleryList';
 
-import { Skeleton } from '../components/Skeleton';
+import { Heading1 } from '../components/shared/Typography';
 
 const HomePage = () => {
-  const { characters, isLoading } = useCharacters();
-
-  if (isLoading) {
-    return <Skeleton />;
-  }
-
   return (
-    <div>
-      <h1 className="font-bold">Home</h1>
-
-      {characters.map((character) => (
-        <p key={character.id}>{character.name}</p>
-      ))}
-    </div>
+    <>
+      <Heading1 text="Rick & Morty Gallery" />
+      <GalleryList />
+    </>
   );
 };
 
