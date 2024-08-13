@@ -7,9 +7,13 @@ interface GalleryListItemProps {
 export const GalleryListItem = ({ character }: GalleryListItemProps) => {
   return (
     <li className="relative mx-auto w-fit overflow-hidden rounded-xl shadow-2xl">
-      <a href={`/details/${character.id}`}>
-        <img src={character.image} alt={character.name} />
-        <p className="absolute bottom-2 left-1/2 w-max -translate-x-1/2 rounded-xl border-2 bg-white px-4 py-2 font-bold">
+      <a href={`/details/${character.id}`} className="group block">
+        <img
+          src={character.image}
+          alt={character.name}
+          className="transition-transform duration-300 group-hover:scale-105 group-focus:scale-105"
+        />
+        <p className="absolute bottom-2 left-1/2 w-max -translate-x-1/2 rounded-xl border-2 bg-white px-4 py-2 font-bold transition-opacity duration-300 group-hover:opacity-60 group-focus:opacity-60">
           {character.name}
         </p>
       </a>
