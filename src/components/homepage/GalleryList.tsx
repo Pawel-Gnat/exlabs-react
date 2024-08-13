@@ -1,11 +1,11 @@
-import { useCharacters } from '../../hooks/useCharacters';
+import { useCharacterContext } from '../../context/CharacterContext';
 
 import { Skeleton } from '../shared/Skeleton';
 
 import { GalleryListItem } from './GalleryListItem';
 
 export const GalleryList = () => {
-  const { characters, isLoading, isError } = useCharacters();
+  const { characters, isLoading, isError } = useCharacterContext();
 
   if (isError) {
     return <p className="mt-10 text-center text-red-500">Failed to load characters.</p>;

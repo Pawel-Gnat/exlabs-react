@@ -1,10 +1,26 @@
-import { DB_URL } from '../api';
+import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 
-import { useEffect, useRef, useState } from 'react';
+import { DB_URL } from '../api';
 
 import { Character, CharacterResponseSchema } from '../models/Character';
 
-export const useCharacters = () => {
+interface CharacterContextProps {
+  characters: Character[] | null;
+  isLoading: boolean;
+  isError: boolean;
+}
+
+const initialState = {
+  characters: null,
+  isLoading: false,
+  isError: false,
+};
+
+export const CharacterContext = createContext<CharacterContextProps>({
+  ...initialState,
+});
+
+export const CharacterProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [characters, setCharacters] = useState<Character[] | null>(null);
@@ -65,9 +81,14 @@ export const useCharacters = () => {
     };
   }, []);
 
-  return {
-    characters,
-    isLoading,
-    isError,
-  };
+  return (
+    <CharacterContext.Provider value={{ isLoading, isError, characters }}>
+      {children}
+    </CharacterContext.Provider>
+  );
+};
+
+export const useCharacterContext = () => {
+  const { isLoading, isError, characters } = useContext(CharacterContext);
+  return { isLoading, isError, characters };
 };
