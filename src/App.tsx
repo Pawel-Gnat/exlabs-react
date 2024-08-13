@@ -1,6 +1,3 @@
-import '@fontsource/lato';
-import './App.css';
-
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import { CharacterProvider } from './context/CharacterContext';

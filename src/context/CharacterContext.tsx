@@ -88,7 +88,4 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const useCharacterContext = () => {
-  const { isLoading, isError, characters } = useContext(CharacterContext);
-  return { isLoading, isError, characters };
-};
+export const useCharacterContext = () => useContext(CharacterContext);
