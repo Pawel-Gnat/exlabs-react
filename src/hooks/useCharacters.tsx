@@ -2,7 +2,7 @@ import { DB_URL } from '../api';
 
 import { useEffect, useRef, useState } from 'react';
 
-import { Character } from '../types/types';
+import { Character, CharacterResponseSchema } from '../models/Character';
 
 export const useCharacters = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,12 +21,24 @@ export const useCharacters = () => {
           signal: newController.signal,
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          setCharacters(data.results);
-        } else {
+        if (!response.ok) {
+          console.error('Fetch failed', response.status);
           setIsError(true);
+          return;
         }
+
+        const data = await response.json();
+        const validationResult = CharacterResponseSchema.safeParse({
+          characters: data.results,
+        });
+
+        if (!validationResult.success) {
+          console.error('Validation failed:', validationResult.error.errors);
+          setIsError(true);
+          return;
+        }
+
+        setCharacters(validationResult.data.characters);
       } catch (error) {
         if (error instanceof Error) {
           if (error.name === 'AbortError') {

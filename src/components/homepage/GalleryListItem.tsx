@@ -1,4 +1,4 @@
-import { Character } from '../../types/types';
+import { Character } from '../../models/Character';
 
 interface GalleryListItemProps {
   character: Character;
