@@ -1,0 +1,21 @@
+name: Deploy Vercel
+description: Deploy Vercel
+
+inputs:
+  vercel-token:
+    description: 'Vercel token'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Vercel CLI
+      run: npm install --global vercel@canary
+      shell: bash
+
+    - name: Vercel Deployment
+      run: |
+        vercel pull --yes --environment=production --token=${{ inputs.vercel-token }}
+        vercel build --prod --token=${{ inputs.vercel-token }}
+        vercel deploy --prebuilt --prod --token=${{ inputs.vercel-token }}
+      shell: bash
