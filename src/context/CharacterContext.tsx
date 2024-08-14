@@ -24,54 +24,54 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
   const [characters, setCharacters] = useState<Character[] | null>(null);
   const controllerRef = useRef<AbortController | null>(null);
 
-  useEffect(() => {
-    const fetchCharacters = async () => {
-      const newController = new AbortController();
-      controllerRef.current = newController;
+  const fetchCharacters = async () => {
+    const newController = new AbortController();
+    controllerRef.current = newController;
 
-      try {
-        setIsLoading(true);
-        const response = await fetch(`${DB_URL}/character`, {
-          signal: newController.signal,
-        });
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${DB_URL}/character`, {
+        signal: newController.signal,
+      });
 
-        if (!response.ok) {
-          console.error('Fetch failed', response.status);
-          setIsError(true);
-          return;
-        }
+      if (!response.ok) {
+        console.error('Fetch failed', response.status);
+        setIsError(true);
+        return;
+      }
 
-        const data = await response.json();
-        const validationResult = CharacterResponseSchema.safeParse({
-          characters: data.results,
-        });
+      const data = await response.json();
+      const validationResult = CharacterResponseSchema.safeParse({
+        characters: data.results,
+      });
 
-        if (!validationResult.success) {
-          console.error('Validation failed:', validationResult.error.errors);
-          setIsError(true);
-          return;
-        }
+      if (!validationResult.success) {
+        console.error('Validation failed:', validationResult.error.errors);
+        setIsError(true);
+        return;
+      }
 
-        setCharacters(validationResult.data.characters);
-      } catch (error) {
-        console.log(error);
+      setCharacters(validationResult.data.characters);
+    } catch (error) {
+      console.log(error);
 
-        if (error instanceof Error) {
-          if (error.name === 'AbortError') {
-            console.warn('Fetch aborted');
-          } else {
-            setIsError(true);
-            console.error('Fetch error:', error.message);
-          }
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          console.warn('Fetch aborted');
         } else {
           setIsError(true);
-          console.error('Unexpected error', error);
+          console.error('Fetch error:', error.message);
         }
-      } finally {
-        setIsLoading(false);
+      } else {
+        setIsError(true);
+        console.error('Unexpected error', error);
       }
-    };
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchCharacters();
   }, []);
 
