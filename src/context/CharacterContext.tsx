@@ -1,19 +1,17 @@
+import { DB_URL } from '@/api';
+import { Character, CharacterResponseSchema } from '@/models/Character';
 import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
-
-import { DB_URL } from '../api';
-
-import { Character, CharacterResponseSchema } from '../models/Character';
 
 interface CharacterContextProps {
   characters: Character[] | null;
-  isLoading: boolean;
   isError: boolean;
+  isLoading: boolean;
 }
 
 const initialState = {
   characters: null,
-  isLoading: false,
   isError: false,
+  isLoading: false,
 };
 
 export const CharacterContext = createContext<CharacterContextProps>({
@@ -78,7 +76,7 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <CharacterContext.Provider value={{ isLoading, isError, characters }}>
+    <CharacterContext.Provider value={{ characters, isError, isLoading }}>
       {children}
     </CharacterContext.Provider>
   );

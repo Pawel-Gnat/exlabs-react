@@ -1,17 +1,14 @@
+import { Skeleton } from '@/components/shared/Skeleton';
+import { Heading1 } from '@/components/shared/Typography';
+import { Link } from '@/components/ui';
+import { useCharacterById } from '@/hooks/useCharacterById';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
-import { useCharacterById } from '../hooks/useCharacterById';
-
-import { Heading1 } from '../components/shared/Typography';
-import { Skeleton } from '../components/shared/Skeleton';
-
-import { Link } from '../components/ui';
 
 const DetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isLoading, character } = useCharacterById(Number(id));
+  const { character, isLoading } = useCharacterById(Number(id));
 
   const renderDetailText = (label: string, text?: string) => {
     return isLoading ? (
@@ -37,9 +34,9 @@ const DetailPage = () => {
           <Skeleton className="aspect-square rounded-xl md:flex-1" />
         ) : (
           <img
-            src={character?.image}
             alt={character?.name}
             className="aspect-square rounded-xl object-cover shadow-2xl md:flex-1"
+            src={character?.image}
           />
         )}
 
@@ -49,7 +46,7 @@ const DetailPage = () => {
           {renderDetailText('Origin', character?.origin.name)}
           {renderDetailText('Location', character?.location.name)}
 
-          <Link to="/" text="Back to Gallery" />
+          <Link text="Back to Gallery" to="/" />
         </div>
       </div>
     </>

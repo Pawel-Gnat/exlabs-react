@@ -1,31 +1,31 @@
-import { cn } from '../../utils/classNames';
+import { cn } from '@/utils/classNames';
 
 interface ButtonProps {
-  text: string;
-  onClick: () => void;
-  disabled?: boolean;
-  className?: string;
-  ariaLabel?: string;
   ariaCurrent?: 'page' | undefined;
+  ariaLabel?: string;
+  className?: string;
+  disabled?: boolean;
+  onClick: () => void;
+  text: string;
 }
 
 export const Button = ({
-  text,
-  onClick,
-  disabled,
-  className,
-  ariaLabel,
   ariaCurrent,
+  ariaLabel,
+  className,
+  disabled,
+  onClick,
+  text,
 }: ButtonProps) => {
   return (
     <button
+      aria-current={ariaCurrent}
+      aria-label={ariaLabel}
       className={cn(
         `rounded-xl border p-4 shadow-2xl transition-colors duration-300 hover:bg-black hover:text-white focus:bg-black focus:text-white ${className} disabled:bg-inherit disabled:text-inherit disabled:transition-none`,
       )}
-      onClick={onClick}
       disabled={disabled}
-      aria-label={ariaLabel}
-      aria-current={ariaCurrent}
+      onClick={onClick}
     >
       {text}
     </button>

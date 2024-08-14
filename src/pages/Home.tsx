@@ -1,6 +1,5 @@
-import { GalleryContainer } from '../components/homepage/GalleryContainer';
-
-import { Heading1 } from '../components/shared/Typography';
+import { GalleryContainer } from '@/components/homepage/GalleryContainer';
+import { Heading1 } from '@/components/shared/Typography';
 
 const HomePage = () => {
   return (

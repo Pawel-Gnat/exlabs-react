@@ -10,13 +10,13 @@ export const Search = ({ searchQuery, setSearchQuery }: SearchProps) => {
         Search by name
       </label>
       <input
-        id="search"
-        type="text"
-        name="search"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value.trim())}
         className="rounded-xl border p-4 shadow-2xl"
+        id="search"
+        name="search"
+        onChange={(e) => setSearchQuery(e.target.value.trim())}
         placeholder="Search by name..."
+        type="text"
+        value={searchQuery}
       />
     </>
   );

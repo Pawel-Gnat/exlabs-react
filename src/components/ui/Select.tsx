@@ -8,10 +8,10 @@ export const Select = ({ gallerySize, setGallerySize }: SelectProps) => {
     <label className="self-end">
       <span className="font-bold">Gallery size:</span>
       <select
-        name="gallerySize"
-        value={gallerySize}
-        onChange={(e) => setGallerySize(Number(e.target.value))}
         className="ml-2 rounded-xl border p-4 shadow-2xl"
+        name="gallerySize"
+        onChange={(e) => setGallerySize(Number(e.target.value))}
+        value={gallerySize}
       >
         <option className="mt-4" value="6">
           6

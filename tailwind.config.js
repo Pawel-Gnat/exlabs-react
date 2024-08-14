@@ -2,6 +2,7 @@
 
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  plugins: [],
   theme: {
     extend: {
       gridTemplateColumns: {
@@ -9,5 +10,4 @@ export default {
       },
     },
   },
-  plugins: [],
 };

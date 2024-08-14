@@ -1,21 +1,20 @@
-import { GalleryListItem } from './GalleryListItem';
+import { Character } from '@/models/Character';
 
 import { Skeleton } from '../shared';
-
-import { Character } from '../../models/Character';
+import { GalleryListItem } from './GalleryListItem';
 
 interface GalleryListProps {
+  characters: Character[] | null;
   gallerySize: number;
   isLoading: boolean;
-  characters: Character[] | null;
 }
 
-export const GalleryList = ({ gallerySize, isLoading, characters }: GalleryListProps) => {
+export const GalleryList = ({ characters, gallerySize, isLoading }: GalleryListProps) => {
   return (
     <ul className="grid w-full grid-cols-auto-fill gap-4 md:gap-6">
       {isLoading &&
         Array.from({ length: gallerySize }).map((_, index) => (
-          <Skeleton key={index} className="mx-auto h-[230px] max-w-[300px]" />
+          <Skeleton className="mx-auto h-[230px] max-w-[300px]" key={index} />
         ))}
 
       {characters?.length === 0 ? (
@@ -24,7 +23,7 @@ export const GalleryList = ({ gallerySize, isLoading, characters }: GalleryListP
         </p>
       ) : (
         characters?.map((character) => (
-          <GalleryListItem key={character.id} character={character} />
+          <GalleryListItem character={character} key={character.id} />
         ))
       )}
     </ul>

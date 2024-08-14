@@ -1,15 +1,12 @@
+import { useCharacterContext } from '@/context/CharacterContext';
+import { Character } from '@/models/Character';
 import { useEffect, useRef, useState } from 'react';
 
-import { useCharacterContext } from '../../context/CharacterContext';
-
+import { Pagination, Search, Select } from '../ui';
 import { GalleryList } from './GalleryList';
 
-import { Pagination, Search, Select } from '../ui';
-
-import { Character } from '../../models/Character';
-
 export const GalleryContainer = () => {
-  const { characters, isLoading, isError } = useCharacterContext();
+  const { characters, isError, isLoading } = useCharacterContext();
   const [gallerySize, setGallerySize] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,19 +39,19 @@ export const GalleryContainer = () => {
     <div className="flex flex-col gap-4">
       <div className="flex flex-col justify-between gap-4 sm:flex-row">
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <Select setGallerySize={setGallerySize} gallerySize={gallerySize} />
+        <Select gallerySize={gallerySize} setGallerySize={setGallerySize} />
       </div>
 
       <GalleryList
-        isLoading={isLoading}
         characters={filteredCharacters}
         gallerySize={gallerySize}
+        isLoading={isLoading}
       />
 
       <Pagination
         currentPage={currentPage}
-        totalPages={totalPages.current}
         setCurrentPage={setCurrentPage}
+        totalPages={totalPages.current}
       />
     </div>
   );

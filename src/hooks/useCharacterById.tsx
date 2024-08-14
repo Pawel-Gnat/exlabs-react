@@ -1,8 +1,6 @@
+import { useCharacterContext } from '@/context/CharacterContext';
+import { Character } from '@/models/Character';
 import { useEffect, useState } from 'react';
-
-import { useCharacterContext } from '../context/CharacterContext';
-
-import { Character } from '../models/Character';
 
 export const useCharacterById = (id: number) => {
   const { characters } = useCharacterContext();
@@ -18,7 +16,7 @@ export const useCharacterById = (id: number) => {
   }, [characters, id, isLoading]);
 
   return {
-    isLoading,
     character,
+    isLoading,
   };
 };
