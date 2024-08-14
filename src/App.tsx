@@ -8,8 +8,8 @@ import { DetailPage, DetailsPage, HomePage, NotFoundPage } from './pages';
 
 function App() {
   return (
-    <CharacterProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <CharacterProvider>
         <Routes>
           <Route element={<RootLayout />}>
             <Route index element={<HomePage />} />
@@ -18,8 +18,8 @@ function App() {
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </BrowserRouter>
-    </CharacterProvider>
+      </CharacterProvider>
+    </BrowserRouter>
   );
 }
 

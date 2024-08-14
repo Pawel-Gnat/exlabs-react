@@ -1,25 +1,27 @@
-import { useCharacterContext } from '../../context/CharacterContext';
-
-import { Skeleton } from '../shared/Skeleton';
-
 import { GalleryListItem } from './GalleryListItem';
 
-export const GalleryList = () => {
-  const { characters, isLoading, isError } = useCharacterContext();
+import { Skeleton } from '../shared';
 
-  if (isError) {
-    return <p className="mt-10 text-center text-red-500">Failed to load characters.</p>;
-  }
+import { Character } from '../../models/Character';
 
+interface GalleryListProps {
+  gallerySize: number;
+  isLoading: boolean;
+  characters: Character[] | null;
+}
+
+export const GalleryList = ({ gallerySize, isLoading, characters }: GalleryListProps) => {
   return (
-    <ul className="grid-cols-auto-fill grid w-full gap-4 md:gap-6">
+    <ul className="grid w-full grid-cols-auto-fill gap-4 md:gap-6">
       {isLoading &&
-        Array.from({ length: 6 }).map((_, index) => (
+        Array.from({ length: gallerySize }).map((_, index) => (
           <Skeleton key={index} className="mx-auto h-[230px] max-w-[300px]" />
         ))}
 
       {characters?.length === 0 ? (
-        <p className="text-center">No characters found</p>
+        <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-bold">
+          No characters found.
+        </p>
       ) : (
         characters?.map((character) => (
           <GalleryListItem key={character.id} character={character} />

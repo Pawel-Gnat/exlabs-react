@@ -56,6 +56,8 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
 
         setCharacters(validationResult.data.characters);
       } catch (error) {
+        console.log(error);
+
         if (error instanceof Error) {
           if (error.name === 'AbortError') {
             console.warn('Fetch aborted');
@@ -73,12 +75,6 @@ export const CharacterProvider = ({ children }: { children: ReactNode }) => {
     };
 
     fetchCharacters();
-
-    return () => {
-      if (controllerRef.current) {
-        controllerRef.current.abort();
-      }
-    };
   }, []);
 
   return (
