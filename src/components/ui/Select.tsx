@@ -5,7 +5,7 @@ interface SelectProps {
 
 export const Select = ({ gallerySize, setGallerySize }: SelectProps) => {
   return (
-    <label>
+    <label className="self-end">
       <span className="font-bold">Gallery size:</span>
       <select
         name="gallerySize"
