@@ -1,9 +1,11 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useCharacterById } from '../hooks/useCharacterById';
 
 import { Heading1 } from '../components/shared/Typography';
 import { Skeleton } from '../components/shared/Skeleton';
+
+import { Link } from '../components/ui';
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -39,12 +41,7 @@ const DetailPage = () => {
           {renderDetailText('Origin', character?.origin.name)}
           {renderDetailText('Location', character?.location.name)}
 
-          <Link
-            to="/"
-            className="text-md mx-auto mt-2 w-fit rounded-xl border px-6 py-2 shadow-2xl transition-colors duration-300 hover:bg-black hover:text-white focus:bg-black focus:text-white md:mx-0"
-          >
-            Back to Gallery
-          </Link>
+          <Link to="/" text="Back to Gallery" />
         </div>
       </div>
     </>

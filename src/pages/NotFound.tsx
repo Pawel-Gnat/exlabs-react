@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Heading1 } from '../components/shared';
+
+import { Link } from '../components/ui';
 
 const NotFoundPage = () => {
   return (
-    <div>
-      <h1 className="font-bold">NotFound</h1>
-      <Link to="/">Go back to Home Page</Link>
+    <div className="m-auto text-center">
+      <Heading1 text="Page not found" />
+      <Link to="/" text="Back to Gallery" />
     </div>
   );
 };
