@@ -1,4 +1,5 @@
-import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useCharacterById } from '../hooks/useCharacterById';
 
@@ -9,6 +10,7 @@ import { Link } from '../components/ui';
 
 const DetailPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { isLoading, character } = useCharacterById(Number(id));
 
   const renderDetailText = (label: string, text?: string) => {
@@ -20,6 +22,12 @@ const DetailPage = () => {
       </p>
     );
   };
+
+  useEffect(() => {
+    if (!isLoading && !character) {
+      navigate('/not-found');
+    }
+  }, [isLoading, character, navigate]);
 
   return (
     <>
