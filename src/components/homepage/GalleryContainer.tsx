@@ -39,7 +39,7 @@ export const GalleryContainer = () => {
   }
 
   return (
-    <div className="mt-8 flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <div className="flex justify-between gap-4">
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <Select setGallerySize={setGallerySize} gallerySize={gallerySize} />
