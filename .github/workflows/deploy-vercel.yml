@@ -18,6 +18,9 @@ jobs:
       - name: Format & Lint code
         uses: ./.github/actions/format-code
 
+      - name: Run unit tests
+        uses: ./.github/actions/unit-tests
+
       - name: Build app
         run: npm run build
 
