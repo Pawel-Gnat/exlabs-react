@@ -22,7 +22,6 @@ export default [
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      'perfectionist/sort-imports': 'error',
     },
   },
 ];
