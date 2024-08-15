@@ -8,7 +8,7 @@ interface GalleryListItemProps {
 export const GalleryListItem = ({ character }: GalleryListItemProps) => {
   return (
     <li className="relative mx-auto w-fit overflow-hidden rounded-xl shadow-2xl">
-      <Link className="group block" to={`/details/${character.id}`}>
+      <Link className="group block" to={`/characters/${character.id}`}>
         <img
           alt={character.name}
           className="transition-transform duration-300 group-hover:scale-105 group-focus:scale-105"

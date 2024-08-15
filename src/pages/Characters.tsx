@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const DetailsPage = () => {
+const CharactersPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -11,4 +11,4 @@ const DetailsPage = () => {
   return null;
 };
 
-export default DetailsPage;
+export default CharactersPage;

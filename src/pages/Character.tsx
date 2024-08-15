@@ -5,12 +5,12 @@ import { useCharacterById } from '@/hooks/useCharacterById';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const DetailPage = () => {
+const CharacterPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { character, isLoading } = useCharacterById(Number(id));
 
-  const renderDetailText = (label: string, text?: string) => {
+  const renderCharacterText = (label: string, text?: string) => {
     return isLoading ? (
       <Skeleton className="h-[28px] w-1/2 rounded-xl" />
     ) : (
@@ -41,10 +41,10 @@ const DetailPage = () => {
         )}
 
         <div className="my-auto flex flex-1 flex-col gap-2">
-          {renderDetailText('Species', character?.species)}
-          {renderDetailText('Gender', character?.gender)}
-          {renderDetailText('Origin', character?.origin.name)}
-          {renderDetailText('Location', character?.location.name)}
+          {renderCharacterText('Species', character?.species)}
+          {renderCharacterText('Gender', character?.gender)}
+          {renderCharacterText('Origin', character?.origin.name)}
+          {renderCharacterText('Location', character?.location.name)}
 
           <Link text="Back to Gallery" to="/" />
         </div>
@@ -53,4 +53,4 @@ const DetailPage = () => {
   );
 };
 
-export default DetailPage;
+export default CharacterPage;
