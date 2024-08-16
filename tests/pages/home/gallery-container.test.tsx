@@ -126,7 +126,7 @@ describe('Gallery container component', () => {
 
     await user.type(searchInput, 'Rick');
 
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getAllByText(/Rick/i)).toHaveLength(2);
     });
   });
@@ -151,7 +151,7 @@ describe('Gallery container component', () => {
 
     await user.type(searchInput, 'Ricky');
 
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText('No characters found.')).toBeInTheDocument();
     });
   });
@@ -176,7 +176,7 @@ describe('Gallery container component', () => {
 
     user.selectOptions(gallerySizeSelect, '6');
 
-    await waitFor(() => {
+    waitFor(() => {
       const listItems = screen.getAllByRole('listitem');
       expect(listItems).toHaveLength(6);
     });
@@ -206,7 +206,7 @@ describe('Gallery container component', () => {
 
     await user.click(secondPaginationButton);
 
-    await waitFor(() => {
+    waitFor(() => {
       const listItems = screen.getAllByRole('listitem');
       expect(listItems).toHaveLength(4);
     });

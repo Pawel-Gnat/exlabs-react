@@ -11,7 +11,7 @@ export const mockedCharacters = [
     },
     name: 'Rick Sanchez',
     origin: {
-      name: 'Earth (C-137)',
+      name: 'Citadel of Ricks',
       url: 'https://example.com/origins/earth-c137',
     },
     species: 'Human',

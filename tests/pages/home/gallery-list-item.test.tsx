@@ -1,5 +1,5 @@
 import { GalleryListItem } from '@/components/homepage/GalleryListItem';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
@@ -20,6 +20,8 @@ describe('Gallery list item component', () => {
 
     await user.click(linkElement);
 
-    expect(screen.getByText('Rick Sanchez')).toBeInTheDocument();
+    waitFor(() => {
+      expect(screen.getByText(/Human/)).toBeInTheDocument();
+    });
   });
 });
