@@ -1,10 +1,9 @@
-
 # Exlabs React
 
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
-* [Possible improvements](#possible-improvements)
+- [General info](#general-info)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Possible improvements](#possible-improvements)
 
 ## General info
 
@@ -16,34 +15,38 @@ The application allows to filter characters by name. To improve UX, pagination a
 
 ## Technologies
 
-* React
-* TypeScript
-* Tailwind (CSS)
-* Vitest + React Testing Library (unit tests)
-* Prettier + Eslint (tooling with plugins)
-* Husky (run formatting and linting on commit push)
-* CI/CD with Github Pages (test run, code lint and Vercel deployment)
-* React Transition Group (web transitions)
+- React
+- TypeScript
+- Tailwind (CSS)
+- Vitest + React Testing Library (unit tests)
+- Prettier + Eslint (tooling with plugins)
+- Husky (run formatting and linting on commit push)
+- CI/CD with Github Pages (test run, code lint and Vercel deployment)
+- React Transition Group (web transitions)
 
-## Setup 
+## Setup
 
 **1. Clone the repo**
+
 ```
 git clone https://github.com/Pawel-Gnat/exlabs-react.git
 ```
 
 **2. Install NPM packages**
+
 ```
 npm install
 ```
 
 **3. Run project**
+
 ```
 npm run start
 ```
 
 ## Possible improvements
 
-* Accessibility check
-* Additional unit tests
-* Fancy animations
+- Accessibility check
+- Additional unit tests
+- Fancy animations
+- Better select component
